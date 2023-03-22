@@ -4,6 +4,10 @@ Group Project
 ## Current Team Members
 - Airat Yusuff
 - Gold Okpa
+- Alen Varghese
+
+## Project status
+- Planning/setup stage
 
 ## Initial Tasks/Things to Note
 
@@ -14,6 +18,13 @@ Group Project
 - For all PRs, please provide a summary of what was worked on/ the features in the PR.
 - If there are any questions or feedback, please leave them as comments on the PR.
 - Please ensure to always pull all updates from the **master** branch before creating your new branch locally and working with it.
+
+- Please name packages as "src" for all source Java files, and "test" for JUnit test files.
+- The UML diagram file is now included and will be updated as project progresses.
+- The work plan will also be updated
+
 - **To be continued...**
 
 Feel free to add more highlights to help us all work better together.
+
+

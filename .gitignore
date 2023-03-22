@@ -1,1 +1,11 @@
+# Eclipse specific files to ignore
 .project
+.classpath
+
+# If using a different IDE, add IDE-specific files to ignore here
+
+
+# Mac
+.DS_Store
+
+/bin/
