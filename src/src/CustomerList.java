@@ -1,32 +1,29 @@
 package src;
 import java.util.ArrayList;
-//import java.util.List;
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.io.IOException;
+import java.util.List;
 
 
 class CustomerList {
-    private ArrayList<Customer> customers;
+    private List<Customer> customersList;
     
     public CustomerList() {
         setCustomers(new ArrayList<Customer>());
     }
     
     public void addCustomer(Customer customer) {
-        getCustomers().add(customer);
+    	customersList.add(customer);
     }
     
     public void removeCustomer(Customer customer) {
-        getCustomers().remove(customer);
+    	customersList.remove(customer);
     }
 
-	public ArrayList<Customer> getCustomers() {
-		return customers;
+	public List<Customer> getCustomers() {
+		return customersList;
 	}
 
 	public void setCustomers(ArrayList<Customer> customers) {
-		this.customers = customers;
+		customersList = customers;
 	}
 
 
