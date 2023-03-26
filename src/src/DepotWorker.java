@@ -1,63 +1,17 @@
 package src;
 
 import java.util.List;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DepotWorker {
-	private static List<ParcelClaim> collectionQueue;
-	
-	public static void main(String[] args) throws FileNotFoundException {
+	private List<ParcelClaim> collectionQueue;
+	private static ParcelList pList;
 
-//		Step 1: read both csv files
-		try {
-			DataHandler da = new DataHandler("./sample_p.csv", "./sample_c.csv");
-
-			CustomerList cList = new CustomerList();
-			da.importAllCustomers(cList);
-			
-			for(Customer c: cList.getCustomers()) {
-				System.out.println(c.getName());
-			}
-			//create parcels and parcelList
-			
-			collectionQueue = new ArrayList<ParcelClaim>();
-			
-			//create queue
-		}
+	public DepotWorker(ParcelList pList) {
+		collectionQueue = new ArrayList<ParcelClaim>();
 		
-		catch (FileNotFoundException e) {
-			System.out.println("Files may not exist");
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-
-//		Step 2: for the first one, create a ParcelList and for every line of csv, create a Parcel  and add to the
-//		uncollectedParcels field in the ParcelList
-
-//		Step 3: for the second one, create a CustomerList class and for every line of csv, create a Customer,
-//			create a ParcelClaim with the Customer object and the rest of the details, and add the ParcelClaim to the
-//			collectionQueue attribute (static attribute so no need to instantiate a Depot_Worker)
-
-//		Step 4: 
-//			For every ParcelClaim object in the collectionQueue, run a method that:
-//				a) finds the parcel to ensure it exists in the ParcelList (using the id from the object), returns the found parcel
-//				b) calculates the collection fee based on the parcel details
-//				c) processCollection which: 
-//					1) creates a CollectedParcel with the parcel details AND collection fee calculated,
-//					2) adds the CollectedParcel to the collectedParcelList attribute of ParcelList, and
-//					3) removes the Parcel from the uncollectedParcelList
-//				d) moves on to the next ParcelClaim object
-
-//		Step 5: check the parcels left in the uncollectedParcelList, vs. the ones in the collectedParcelList,
-//				convert the details of each one to a string, and append to a txt file,
-//				include counts of each list, maybe total collection fees, etc
-
+		DepotWorker.pList = pList;
 	}
-	
 	
 	public List<ParcelClaim> getCollectionQueue() {
 		return collectionQueue;
@@ -72,21 +26,56 @@ public class DepotWorker {
 	}
 
 	private Parcel findParcel(String parcelId) {
-		return new Parcel();
+		Parcel found = null;
+		
+		for(Parcel p: pList.getUncollectedParcels()) {
+			if(p.getParcelId().equals(parcelId)) {
+				found = p;
+				break;
+			}
+		}
+		return found;
 	}
 	
 	private double calculateCollectionFee(Parcel p) {
-		double collectionFee = 0;
+		double fee = 0;
 		
+		if(p.getNumberOfDaysInDepot() > 7) {
+			if(p.getWeight() > 15) {
+				fee = 20;
+			}
+			else if(p.getWeight() > 5 && p.getWeight() < 15) {
+				fee = 15;
+			}
+			else if(p.getWeight() > 0 && p.getWeight() < 5) {
+				fee = 13;
+			}
+		}
+		else {
+			if(p.getWeight() > 15) {
+				fee = 15;
+			}
+			else if(p.getWeight() > 5 && p.getWeight() < 15) {
+				fee = 10;
+			}
+			else if(p.getWeight() > 0 && p.getWeight() < 5) {
+				fee = 8;
+			}
+		}
 		
-		
-		return collectionFee;
+		//for discount
+		if(p.getParcelId().startsWith("C")) {
+			fee *= 0.9;
+		}
+			
+		return fee;
 	}
 	
 	private void processCollection(Parcel p, double fee) {
-		// create new collectedParcel obj, add to collectedParcelList
-		// remove p from uncollectedParcelList
-		
+		p.setCollectionFee(fee);
+		pList.addParcelToCollectedList(p);
+		pList.removeParcelFromUnCollectedList(p);
+		p.setCollected(true);
 	}
 	
 	public void attendToCustomer(ParcelClaim p) {
@@ -94,14 +83,15 @@ public class DepotWorker {
 		//find parcel
 		try {
 			foundParcel = findParcel(p.getParcelId());
+			double collectionFee = calculateCollectionFee(foundParcel);
+			processCollection(foundParcel, collectionFee);
+			System.out.println("Parcel Id " + p.getParcelId() + " claimed! Moving on...");
 		}
-		catch(Exception e) {
+		catch(NullPointerException e) {
 			System.out.println("Parcel not found");
 			return;
 		}
 		
-		double collectionFee = calculateCollectionFee(foundParcel);
-		processCollection(foundParcel, collectionFee);
 				
 	}
 

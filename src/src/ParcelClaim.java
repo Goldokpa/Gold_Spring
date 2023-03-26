@@ -6,9 +6,9 @@ public class ParcelClaim {
 	private String customerName; //to be changed to Customer object
 	
 	
-	public ParcelClaim(String parcelId, String customerName) {
-		this.parcelId = parcelId;
-		this.customerName = customerName;
+	public ParcelClaim(String customerName, String parcelId) {
+		this.parcelId = parcelId.trim();
+		this.customerName = customerName.trim();
 		sequenceNo++;
 	}
 
