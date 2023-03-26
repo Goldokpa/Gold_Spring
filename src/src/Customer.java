@@ -5,7 +5,7 @@ public class Customer {
     private int id;
     
     public Customer(String name, int id) {
-        this.name = name;
+        this.name = name.trim();
         this.id = id;
     }
 
