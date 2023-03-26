@@ -4,6 +4,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		
+		//step 0: create one depot worker
+		
 //		Step 1: read both csv files
 		
 //		Step 2: for the first one, create a ParcelList and for every line of csv, create a Parcel  and add to the
