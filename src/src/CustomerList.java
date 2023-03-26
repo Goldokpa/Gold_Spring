@@ -7,7 +7,7 @@ class CustomerList {
     private List<Customer> customersList;
     
     public CustomerList() {
-        setCustomers(new ArrayList<Customer>());
+        customersList = new ArrayList<Customer>();
     }
     
     public void addCustomer(Customer customer) {
