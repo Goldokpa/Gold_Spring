@@ -3,7 +3,8 @@
 .classpath
 
 # If using a different IDE, add IDE-specific files to ignore here
-
+.idea/
+CSYM026_AssessmentProject.iml
 
 # Mac
 .DS_Store
