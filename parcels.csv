@@ -1,5 +1,4 @@
-﻿PARCEL DATA ,,,
-Parcel ID,Days in Deport,Weight,Dimension
+﻿parcelId,DaysinDepot,Weight,Dimension
 C452,1,24,4 x 1 x 2
 C101,4,10,3 x 5 x 1
 C105,2,15,2 x 9 x 5
@@ -30,5 +29,3 @@ C122,5,30,7 x 7 x 5
 C111,2,33,9 x 5 x 4
 X161,4,34,4 x 6 x 9
 C118,3,42,2 x 4 x 5
-,,,
- Detail of Parcels,,,
