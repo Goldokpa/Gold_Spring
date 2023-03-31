@@ -36,15 +36,4 @@ public class ParcelList {
         uncollectedParcels.remove(parcel);
     }
 
-    // Method to collect a parcel with the given parcel ID
-//    public void collectParcel(String parcelId) {
-//        for (Parcel parcel : uncollectedParcelList) {
-//            if (parcel.parcelId.equals(parcelId)) { // Check if the parcel ID matches
-//                parcel.markAsCollected(); // Mark the parcel as collected
-//                collectedParcelList.add(parcel); // Add the parcel to the list of collected parcels
-//                uncollectedParcelList.remove(parcel); // Remove the parcel from the list of uncollected parcels
-//                break; // Exit the loop since we have found the parcel
-//            }
-//        }
-//    }
 }

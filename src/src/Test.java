@@ -28,11 +28,15 @@ public class Test {
 				worker1.attendToCustomer(claim);
 			}
 			
+			
+			//print results
 			System.out.println("\n\nDone...");
 			
 			System.out.println("Number of collected parcels: " + pList.getCollectedParcels().size());
 			System.out.println("Number of remaining parcels: " + pList.getUncollectedParcels().size());
 			
+			
+			//store results in txt file
 	        PrintWriter writer = new PrintWriter("output.txt"); //correct dir. path
 	        writer.print("Depot Worker results \n\n");
 	        writer.append("Number of collected parcels: " + pList.getCollectedParcels().size() + "\n"); // appends to the file

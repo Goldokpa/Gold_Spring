@@ -12,7 +12,15 @@ public class Parcel {
 
 	public Parcel(String parcelId, int daysInDepot, double weight, String dim) throws Exception {
 		try {
-			this.parcelId = parcelId.trim();
+			// parcelIds must be at least 4 characters long, start with a C or X and the
+			// rest are numbers
+			if ((parcelId.trim().toLowerCase().startsWith("c") || parcelId.trim().toLowerCase().startsWith("x"))
+					&& parcelId.length() >= 4) {
+				this.parcelId = parcelId.trim();
+			} else {
+				throw new Exception("Invalid ParcelId");
+			}
+			
 			if (weight < 0) {
 				this.weight = 0;
 			} else
@@ -27,14 +35,17 @@ public class Parcel {
 			this.daysInDepot = daysInDepot;
 			this.collected = false;
 			collectionFee = 0;
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new Exception("Parcel not created, invalid params");
 		}
 	}
 
 	public String getParcelId() {
 		return parcelId;
+	}
+
+	public void setParcelId(String id) {
+		parcelId = id;
 	}
 
 	public int getNumberOfDaysInDepot() {
@@ -88,8 +99,5 @@ public class Parcel {
 
 	public void setCollectionFee(double fee) {
 		collectionFee = fee;
-	}
-
-	public void markAsCollected() {
 	}
 }
