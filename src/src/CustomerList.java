@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class CustomerList {
+public class CustomerList {
     private List<Customer> customersList;
     
     public CustomerList() {

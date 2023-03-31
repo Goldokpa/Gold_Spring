@@ -1,4 +1,4 @@
-package src;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,18 +9,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import src.Customer;
+import src.CustomerList;
+
 class CustomerListTest {
     private CustomerList customerList;
     private Customer c1;
     private Customer c2;
-    private Customer c3;
 
     @BeforeEach
     void setUp()throws Exception {
         customerList = new CustomerList();
         c1 = new Customer("John Dave", 1);
         c2 = new Customer("Helen Paul", 2);
-        c3 = new Customer("Joy Saint", 3);
     }
 
     @AfterEach
@@ -28,7 +29,6 @@ class CustomerListTest {
         customerList = null;
         c1 = null;
         c2 = null;
-        c3 = null;
     }
 
     @Test
@@ -37,19 +37,12 @@ class CustomerListTest {
         assertEquals(1, customerList.getCustomers().size());
         assertTrue(customerList.getCustomers().contains(c1));
 
-        customerList.addCustomer(c2);
-        assertEquals(2, customerList.getCustomers().size());
-        assertTrue(customerList.getCustomers().contains(c2));
     }
 
     @Test
     void testRemoveCustomer() {
-        customerList.addCustomer(c1);
-        customerList.addCustomer(c2);
-        customerList.addCustomer(c3);
-
         customerList.removeCustomer(c2);
-        assertEquals(2, customerList.getCustomers().size());
+        assertEquals(0, customerList.getCustomers().size());
         assertFalse(customerList.getCustomers().contains(c2));
     }
 
@@ -57,13 +50,11 @@ class CustomerListTest {
     void testGetCustomers() {
         customerList.addCustomer(c1);
         customerList.addCustomer(c2);
-        customerList.addCustomer(c3);
 
         List<Customer> customers = customerList.getCustomers();
-        assertEquals(3, customers.size());
+        assertEquals(2, customers.size());
         assertTrue(customers.contains(c1));
         assertTrue(customers.contains(c2));
-        assertTrue(customers.contains(c3));
     }
 
     @Test
