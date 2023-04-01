@@ -1,23 +1,23 @@
 package src;
 
 public class ParcelClaim {
-	private String parcelId;
+	private String[] parcelIds;
 	private static int sequenceNo = 0;
 	private String customerName; //to be changed to Customer object
 	
 	
-	public ParcelClaim(String customerName, String parcelId) {
-		this.parcelId = parcelId.trim();
+	public ParcelClaim(String customerName, String[] parcelIds) {
+		this.parcelIds = parcelIds;
 		this.customerName = customerName.trim();
 		sequenceNo++;
 	}
 
-	public String getParcelId() {
-		return parcelId;
+	public String[] getParcelIds() {
+		return parcelIds;
 	}
 
-	public void setParcelId(String parcelId) {
-		this.parcelId = parcelId;
+	public void setParcelIds(String[] parcelIds) {
+		this.parcelIds = parcelIds;
 	}
 
 	public static int getSequenceNo() {

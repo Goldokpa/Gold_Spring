@@ -1,6 +1,7 @@
 package src;
 
 import java.util.List;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DepotWorker {
@@ -41,7 +42,7 @@ public class DepotWorker {
 		double fee = 0;
 		
 		if(p.getNumberOfDaysInDepot() > 7) {
-			if(p.getWeight() > 15) {
+			if(p.getWeight() >= 15) {
 				fee = 20;
 			}
 			else if(p.getWeight() > 5 && p.getWeight() < 15) {
@@ -52,7 +53,7 @@ public class DepotWorker {
 			}
 		}
 		else {
-			if(p.getWeight() > 15) {
+			if(p.getWeight() >= 15) {
 				fee = 15;
 			}
 			else if(p.getWeight() > 5 && p.getWeight() < 15) {
@@ -80,19 +81,24 @@ public class DepotWorker {
 	
 	public void attendToCustomer(ParcelClaim p) {
 		Parcel foundParcel;
-		//find parcel
-		try {
-			foundParcel = findParcel(p.getParcelId());
-			double collectionFee = calculateCollectionFee(foundParcel);
-			processCollection(foundParcel, collectionFee);
-			System.out.println("Parcel Id " + p.getParcelId() + " claimed! Moving on...");
-		}
-		catch(NullPointerException e) {
-			System.out.println("Parcel not found");
-			return;
-		}
+		//find each parcel from the claim
+		System.out.println("Processing customer " + p.getCustomerName());
 		
+		for(int i = 0; i < p.getParcelIds().length; i++) {
+			try {
+				//trim possible spaces in ids in claim array of ids
+				foundParcel = findParcel(p.getParcelIds()[i].trim());
 				
+				double collectionFee = calculateCollectionFee(foundParcel);
+				processCollection(foundParcel, collectionFee);
+				System.out.println("Parcel Id " + p.getParcelIds()[i] + " claimed!");
+			}
+			catch(NullPointerException e) {
+				System.out.println("Parcel not found");
+				return;
+			}
+		}	
+		System.out.println("\nMoving on to next customer...");
 	}
 
 }

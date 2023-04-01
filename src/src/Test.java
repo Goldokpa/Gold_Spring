@@ -2,6 +2,7 @@ package src;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.io.*;
 
 public class Test {
@@ -38,10 +39,12 @@ public class Test {
 	        writer.append("Number of collected parcels: " + pList.getCollectedParcels().size() + "\n"); // appends to the file
 	        writer.append("Number of remaining parcels: " + pList.getUncollectedParcels().size() + "\n");
 	        
+	        DecimalFormat dpFormatter = new DecimalFormat("0.00");
+	        
 	        double totalFees = 0;
 	        writer.append("\nCollected Parcels - Collection Fee\n");
 	        for(Parcel p: pList.getCollectedParcels()) {
-	        	writer.append(p.getParcelId() + " - £" + p.getCollectionFee() + "\n");
+	        	writer.append(p.getParcelId() + " - £" + dpFormatter.format(p.getCollectionFee()) + "\n");
 	        	totalFees += p.getCollectionFee();
 	        }
 	        writer.append("\nUncollected Parcels\n");
@@ -50,7 +53,7 @@ public class Test {
 	        	writer.append(p.getParcelId() + "\n");
 	        }
 	        
-	        writer.append("\nTotal Collection Fee for the day: £" + totalFees + "\n");
+	        writer.append("\nTotal Collection Fee for the day: £" + dpFormatter.format(totalFees) + "\n");
 	        
 	        writer.close();
 			
