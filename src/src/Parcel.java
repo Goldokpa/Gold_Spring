@@ -1,5 +1,7 @@
 package src;
 
+import java.text.DecimalFormat;
+
 public class Parcel {
 	private String parcelId;
 	private double weight;

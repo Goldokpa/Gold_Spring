@@ -1,7 +1,7 @@
 package src;
 
 import java.io.*;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -12,7 +12,6 @@ import java.util.Scanner;
  *
  */
 public class DataHandler {
-
 	private String lineInFile;
 	private Scanner customersFile;
 	private Scanner parcelsFile;
@@ -102,7 +101,7 @@ public class DataHandler {
 
 		// skip header
 		customersFile.nextLine();
-		
+
 		while (readNextLine(customersFile)) {
 			ParcelClaim pc = createParcelClaim(lineInFile);
 			worker.addParcelClaimToQueue(pc);
@@ -111,10 +110,30 @@ public class DataHandler {
 	}
 
 	public ParcelClaim createParcelClaim(String lineInFile) throws Exception {
-		String[] fields = lineInFile.split(",");
+		try {
+			ParcelClaim pc;
+			String[] fields = lineInFile.split(",");
 
-		ParcelClaim pc = new ParcelClaim(fields[1], fields[2]);
-		return pc;
+			if (fields.length > 3) {
+
+				String[] allParcelIds = Arrays.copyOfRange(fields, 2, fields.length);
+
+				// format rows with multiple parcel ids that will have the leading/trailing
+				// quotes
+				allParcelIds[0] = allParcelIds[0].replace("\"", "");
+				allParcelIds[allParcelIds.length - 1] = allParcelIds[allParcelIds.length - 1].replace("\"", "");
+				pc = new ParcelClaim(fields[1], allParcelIds);
+			} else {
+				String[] parcelId = { fields[2] };
+				pc = new ParcelClaim(fields[1], parcelId);
+			}
+			return pc;
+
+		} catch (Exception e) {
+			System.out.println("an error occurred");
+		}
+		return null;
+
 	}
 
 	/**
@@ -126,7 +145,7 @@ public class DataHandler {
 	public void importAllCustomers(CustomerList cList) throws IOException, Exception {
 		// skip header
 		customersFile.nextLine();
-		
+
 		while (readNextLine(customersFile)) {
 			Customer c = createCustomer(lineInFile, cList);
 			if (c != null) {
