@@ -41,8 +41,9 @@ class CustomerListTest {
 
     @Test
     void testRemoveCustomer() {
+        customerList.addCustomer(c2);
+        assertTrue(customerList.getCustomers().contains(c2));
         customerList.removeCustomer(c2);
-        assertEquals(0, customerList.getCustomers().size());
         assertFalse(customerList.getCustomers().contains(c2));
     }
 

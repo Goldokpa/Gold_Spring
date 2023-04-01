@@ -13,8 +13,7 @@ class CustomerTest {
 
     @BeforeEach
     void setUp()throws Exception {
-        customer = new Customer("John Dave", 1);
-        
+        customer = new Customer("John Dave", 1);        
     }
 
     @AfterEach
