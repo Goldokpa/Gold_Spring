@@ -1,7 +1,6 @@
 package src;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.io.*;
 
@@ -15,16 +14,18 @@ public class Test {
 
 			CustomerList cList = new CustomerList();
 			ParcelList pList = new ParcelList();
-						
+			
+			//create customers and parcels and add them to their lists
 			dh.importAllCustomers(cList);
 			dh.importAllParcels(pList);
 			
+			//initialise a depot worker with the depot's list of parcels
 			DepotWorker worker1 = new DepotWorker(pList);
 
-			//create queue
+			//create customer collection queue
 			dh.createCollectionQueueForWorker("./customers.csv", worker1);
 			
-						
+					
 			for(ParcelClaim claim: worker1.getCollectionQueue()) {
 				worker1.attendToCustomer(claim);
 			}

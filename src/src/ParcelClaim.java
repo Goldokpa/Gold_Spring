@@ -3,7 +3,7 @@ package src;
 public class ParcelClaim {
 	private String[] parcelIds;
 	private static int sequenceNo = 0;
-	private String customerName; //to be changed to Customer object
+	private String customerName; //not neccessary as a customer object since customers are created from the parcel claims file
 	
 	
 	public ParcelClaim(String customerName, String[] parcelIds) {
