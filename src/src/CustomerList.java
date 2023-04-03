@@ -25,18 +25,5 @@ public class CustomerList {
 	public void setCustomers(ArrayList<Customer> customers) {
 		customersList = customers;
 	}
-
-
-//public void readCustomersFromCSV(String filePath) throws IOException {
-//    BufferedReader br = new BufferedReader(new FileReader(filePath));
-//    String line;
-//    while ((line = br.readLine()) != null) {
-//        String[] values = line.split(",");
-//        String name = values[0];
-//        int id = Integer.parseInt(values[1]);
-//        Customer customer = new Customer(name, id);
-//        addCustomer(customer);
-//    }
-//    br.close();
-//}
+	
 }

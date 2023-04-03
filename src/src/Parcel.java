@@ -1,7 +1,5 @@
 package src;
 
-import java.text.DecimalFormat;
-
 public class Parcel {
 	private String parcelId;
 	private double weight;
@@ -12,6 +10,15 @@ public class Parcel {
 	private boolean collected;
 	private double collectionFee;
 
+	/**
+	 * Constructor to validate and handle errors in input before creating an object
+	 * 
+	 * @param parcelId
+	 * @param daysInDepot
+	 * @param weight
+	 * @param dim         dimensions (length x width x height)
+	 * @throws Exception catch any errors
+	 */
 	public Parcel(String parcelId, int daysInDepot, double weight, String dim) throws Exception {
 		try {
 			// parcelIds must be at least 4 characters long, start with a C or X and the
@@ -22,19 +29,25 @@ public class Parcel {
 			} else {
 				throw new Exception("Invalid ParcelId");
 			}
-			
-			if (weight < 0) {
-				this.weight = 0;
-			} else
-				this.weight = weight;
 
+			if (weight < 0) {
+				this.weight = 0.1; // always assume 0.1kg for invalid values
+			} else {
+				this.weight = weight;
+			}
+			
 			String[] dimensions = dim.split("x");
 
 			length = Double.parseDouble(dimensions[0]);
 			width = Double.parseDouble(dimensions[1]);
 			height = Double.parseDouble(dimensions[2]);
 
-			this.daysInDepot = daysInDepot;
+			if (daysInDepot < 0) {
+				this.daysInDepot = 0;
+			} else {
+				this.daysInDepot = daysInDepot;
+			}
+			
 			this.collected = false;
 			collectionFee = 0;
 		} catch (Exception e) {
