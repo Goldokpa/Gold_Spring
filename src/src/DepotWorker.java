@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class DepotWorker {
-	public List<ParcelClaim> collectionQueue;
-	 static ParcelList pList;
+	private List<ParcelClaim> collectionQueue;
+	private static ParcelList pList;
 
 	public DepotWorker(ParcelList pList) {
 		collectionQueue = new ArrayList<ParcelClaim>();
@@ -55,7 +55,8 @@ public class DepotWorker {
 	 * @param p parcel object
 	 * @return collection fee for the parcel
 	 */
-	public double calculateCollectionFee(Parcel p) {
+
+	public double calculateFee(Parcel p) {
 		double fee = 0;
 
 		if (p.getNumberOfDaysInDepot() > 7) {
@@ -91,7 +92,7 @@ public class DepotWorker {
 	 * @param p   parcel
 	 * @param fee collection fee
 	 */
-	private void processCollection(Parcel p, double fee) {
+	public void processCollection(Parcel p, double fee) {
 		p.setCollectionFee(fee);
 		pList.addParcelToCollectedList(p);
 		pList.removeParcelFromUnCollectedList(p);
@@ -118,7 +119,7 @@ public class DepotWorker {
 				foundParcel = findParcel(p.getParcelIds()[i].trim());
 
 				// if parcel found, calculate collection fee
-				double collectionFee = calculateCollectionFee(foundParcel);
+				double collectionFee = calculateFee(foundParcel);
 
 				// process the collection
 				processCollection(foundParcel, collectionFee);
