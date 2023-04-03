@@ -1447,7 +1447,7 @@
 											"top": 243,
 											"width": 331.3095703125,
 											"height": 13,
-											"text": "+calculateCollectionFee(p: Parcel): double",
+											"text": "+calculateFee(p: Parcel): double",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3359,7 +3359,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGHCd++KQuXe78="
 									},
-									"name": "weight; double"
+									"name": "weight; double",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3832,7 +3833,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHCc4qXv+WmGs="
 							},
-							"name": "calculateCollectionFee",
+							"name": "calculateFee",
 							"parameters": [
 								{
 									"_type": "UMLParameter",

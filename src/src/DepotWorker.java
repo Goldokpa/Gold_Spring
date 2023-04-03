@@ -55,7 +55,8 @@ public class DepotWorker {
 	 * @param p parcel object
 	 * @return collection fee for the parcel
 	 */
-	public double calculateCollectionFee(Parcel p) {
+
+	private double calculateFee(Parcel p) {
 		double fee = 0;
 
 		if (p.getNumberOfDaysInDepot() > 7) {
@@ -118,7 +119,7 @@ public class DepotWorker {
 				foundParcel = findParcel(p.getParcelIds()[i].trim());
 
 				// if parcel found, calculate collection fee
-				double collectionFee = calculateCollectionFee(foundParcel);
+				double collectionFee = calculateFee(foundParcel);
 
 				// process the collection
 				processCollection(foundParcel, collectionFee);
