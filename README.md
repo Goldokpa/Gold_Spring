@@ -14,15 +14,21 @@ Group Project
 - Clone the repo
 - Always create a new branch for your work, and any updates you want to make should be pushed to the branch. For ease, branches can be named with the format: ***your_name/feature_you_worked_on***
 - The **main** branch cannot be protected for unintentional pushes because the repo is private and this is not an organisation account. Hence, please ensure you **DO NOT** push directly to the **main** branch.
-- To push your updates, please follow the **branch creation step**, then **create a PR** and tag all team members so it can be reviewed before being merged to the **main** branch.
 
-`git checkout main`
+### To push your updates, please follow the **branch creation step**, then **create a PR** and tag all team members so it can be reviewed before being merged to the **main** branch.
 
-`git pull`
+```
+git checkout main
+git pull
+git checkout -b {name_of_your_new_branch}
+```
 
-`git checkout -b {name_of_your_new_branch}`
-
-Make your commits, then push using `git push orign {name_of_your_branch}`
+###   How to push your updates
+```
+- git add .
+- git commit -m "your_commit_message"
+- git push origin {name_of_your_branch}
+````
 
 - For all PRs, please provide a summary of what was worked on/ the features in the PR.
 - If there are any questions or feedback, please leave them as comments on the PR.
