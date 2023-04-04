@@ -22,10 +22,10 @@ public class Test {
 			//initialise a depot worker with the depot's list of parcels
 			DepotWorker worker1 = new DepotWorker(pList);
 
-			//create customer collection queue
+			//create customer claims/collection queue
 			dh.createCollectionQueueForWorker("./customers.csv", worker1);
 			
-					
+			// work through the list of parcel claims/collections		
 			for(ParcelClaim claim: worker1.getCollectionQueue()) {
 				worker1.attendToCustomer(claim);
 			}

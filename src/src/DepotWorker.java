@@ -59,20 +59,20 @@ public class DepotWorker {
 	public double calculateFee(Parcel p) {
 		double fee = 0;
 
-		if (p.getNumberOfDaysInDepot() > 7) {
-			if (p.getWeight() >= 15) {
+		if (p.getNumberOfDaysInDepot() >= 7) {
+			if (p.getWeight() > 15) {
 				fee = 20;
-			} else if (p.getWeight() >= 5 && p.getWeight() < 15) {
+			} else if (p.getWeight() > 5 && p.getWeight() <= 15) {
 				fee = 15;
-			} else if (p.getWeight() > 0 && p.getWeight() < 5) {
+			} else if (p.getWeight() > 0 && p.getWeight() <= 5) {
 				fee = 13;
 			}
 		} else {
-			if (p.getWeight() >= 15) {
+			if (p.getWeight() > 15) {
 				fee = 15;
-			} else if (p.getWeight() > 5 && p.getWeight() < 15) {
+			} else if (p.getWeight() > 5 && p.getWeight() <= 15) {
 				fee = 10;
-			} else if (p.getWeight() > 0 && p.getWeight() < 5) {
+			} else if (p.getWeight() > 0 && p.getWeight() <= 5) {
 				fee = 8;
 			}
 		}
@@ -126,8 +126,7 @@ public class DepotWorker {
 
 				System.out.println("Parcel Id " + p.getParcelIds()[i] + " claimed!");
 			} catch (NullPointerException e) {
-				System.out.println("Parcel not found");
-				return;
+				System.out.println("Parcel " + p.getParcelIds()[i] + " not found");
 			}
 		}
 		System.out.println("\nMoving on to next customer...");
