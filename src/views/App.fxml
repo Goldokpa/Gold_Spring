@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="656.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppStartController">
+   <children>
+      <Pane layoutY="39.0" prefHeight="60.0" prefWidth="1063.0">
+         <children>
+            <Button fx:id="startBtn" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickStart" prefHeight="34.0" prefWidth="86.0" text="START" textAlignment="CENTER" textFill="#a41f1f" />
+            <Button fx:id="stopBtn" layoutX="532.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" text="STOP" textAlignment="CENTER" textFill="#a41f1f" />
+            <Line endX="1064.3509521484375" endY="59.317108154296875" layoutY="1.0" startX="-1.9534298189682886E-5" startY="59.317108154296875" stroke="#a1a1a1" />
+            <Label layoutX="24.0" layoutY="14.0" maxHeight="40.0" prefHeight="36.0" prefWidth="111.0" text="Total Earnings:  £" />
+            <Label fx:id="totalFees" layoutX="136.0" layoutY="12.0" maxHeight="40.0" prefHeight="40.0" prefWidth="133.0" text="0.00" textFill="#653737" />
+            <Label layoutX="705.0" layoutY="13.0" maxHeight="40.0" prefHeight="36.0" prefWidth="200.0" text="Number of Parcels processed: " />
+            <Label fx:id="collectedParcelCount" layoutX="917.0" layoutY="11.0" maxHeight="40.0" prefHeight="40.0" prefWidth="73.0" text="0" textFill="#653737" />
+         </children>
+      </Pane>
+      <Pane fx:id="headingWrapper" prefHeight="40.0" prefWidth="1063.0">
+         <children>
+            <Label fx:id="headingLabel" alignment="CENTER" layoutX="388.0" layoutY="3.0" prefHeight="34.0" prefWidth="275.0" text="CSYM026 PROJECT" />
+            <Line endX="1063.0" endY="39.000003814697266" startX="1.5751575119793415E-5" startY="40.000003814697266" stroke="#a8a7a7" />
+         </children>
+      </Pane>
+      <Pane fx:id="menu" layoutX="-1.0" layoutY="100.0" prefHeight="555.0" prefWidth="390.0">
+         <children>
+            <Line endX="389.308837890625" endY="555.0" startX="389.3088684082031" startY="0.7070999145507812" stroke="#aeaeae" />
+            <Pane layoutX="2.0" layoutY="-1.0" prefHeight="239.0" prefWidth="387.0">
+               <children>
+                  <GridPane fx:id="currentCustomer" gridLinesVisible="true" layoutX="14.0" layoutY="83.0" prefHeight="85.0" prefWidth="365.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0256805419922" minWidth="10.0" prefWidth="86.36798095703125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.9000549316406" minWidth="10.0" prefWidth="147.51202392578125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.95220947265625" minWidth="10.0" prefWidth="121.98797607421875" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="queueNumber1" prefHeight="35.0" prefWidth="78.0" text="Parcel ID">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="customerName1" prefHeight="35.0" prefWidth="153.0" text="Customer" GridPane.columnIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="parcelIDs1" prefHeight="35.0" prefWidth="143.0" text="Collection Fee" GridPane.columnIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </GridPane>
+                  <Label alignment="CENTER" layoutX="118.0" layoutY="2.0" prefHeight="36.0" prefWidth="136.0" text="Worker 1" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="48.0" prefHeight="36.0" prefWidth="214.0" text="CURRENTLY PROCESSING:" />
+                  <Label fx:id="availableStatus" alignment="CENTER" layoutX="220.0" layoutY="6.0" prefHeight="27.0" prefWidth="65.0" text="Available" textAlignment="RIGHT" textFill="#5da15e">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="rentedStatus" alignment="CENTER" layoutX="220.0" layoutY="6.0" prefHeight="27.0" prefWidth="73.0" text="On Break" textAlignment="RIGHT" textFill="#653737" visible="false">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+               </padding>
+            </Pane>
+            <Line endX="379.9999694824219" endY="28.0" layoutX="10.0" layoutY="10.0" startX="-10.000011444091797" startY="28.0" stroke="#aeaeae" />
+         </children>
+      </Pane>
+      <Pane fx:id="menu1" layoutX="390.0" layoutY="101.0" prefHeight="555.0" prefWidth="346.0">
+         <children>
+            <ScrollPane layoutX="-2.0" layoutY="36.0" prefHeight="520.0" prefWidth="347.0">
+               <content>
+                  <AnchorPane fx:id="customersWrapper" minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="329.0">
+                     <children>
+                        <TableView fx:id="collectionTable" layoutX="8.0" layoutY="14.0" prefHeight="452.0" prefWidth="314.0">
+                          <columns>
+                            <TableColumn fx:id="sequenceNo" prefWidth="41.975982666015625" text="S/N" />
+                            <TableColumn fx:id="customerName" prefWidth="113.0" text="Customer" />
+                              <TableColumn fx:id="parcelIds" prefWidth="136.0" text="Parcel IDs" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <Line endX="389.308837890625" endY="555.0" layoutX="-44.0" startX="389.3088684082031" startY="0.7070999145507812" stroke="#aeaeae" />
+            <Label alignment="CENTER" layoutX="111.0" layoutY="2.0" prefHeight="29.0" prefWidth="111.0" text="Collection Queue" textAlignment="CENTER" />
+         </children>
+      </Pane>
+      <Pane fx:id="menu11" layoutX="735.0" layoutY="100.0" prefHeight="497.0" prefWidth="373.0">
+         <children>
+            <ScrollPane layoutY="36.0" prefHeight="472.0" prefWidth="365.0">
+               <content>
+                  <AnchorPane fx:id="customersWrapper1" minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="354.0">
+                     <children>
+                        <TableView fx:id="allUncollectedParcels" layoutX="10.0" layoutY="14.0" prefHeight="455.0" prefWidth="346.0">
+                           <columns>
+                              <TableColumn fx:id="parcelId" prefWidth="64.0" text="ID" />
+                              <TableColumn fx:id="daysInDepot" prefWidth="100.0" text="DaysInDepot" />
+                              <TableColumn fx:id="weight" prefWidth="63.0" text="Weight" />
+                              <TableColumn fx:id="dimensions" prefWidth="96.0" text="Dimensions" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <Label alignment="CENTER" layoutX="115.0" prefHeight="29.0" prefWidth="111.0" text="Parcels in Depot" textAlignment="CENTER" />
+         </children>
+      </Pane>
+      <Button fx:id="addNewParcelsBtn" layoutX="844.0" layoutY="611.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" text="New Parcels!" textFill="#653737" />
+   </children>
+</AnchorPane>
