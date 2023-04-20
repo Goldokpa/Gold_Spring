@@ -59,7 +59,7 @@ public class DepotWorker {
 	public double calculateFee(Parcel p) {
 		double fee = 0;
 
-		if (p.getNumberOfDaysInDepot() >= 7) {
+		if (p.getDaysInDepot() >= 7) {
 			if (p.getWeight() > 15) {
 				fee = 20;
 			} else if (p.getWeight() > 5 && p.getWeight() <= 15) {
