@@ -43,13 +43,13 @@ public class AppStartController {
 	@FXML
 	private TableColumn<ParcelClaim, String> parcelIds;
 	@FXML
-	private TableColumn<ParcelClaim, String> parcelId;
+	private TableColumn<Parcel, String> parcelId;
 	@FXML
-	private TableColumn<ParcelClaim, Integer> daysInDepot;
+	private TableColumn<Parcel, Integer> daysInDepot;
 	@FXML
-	private TableColumn<ParcelClaim, Double> weight;
+	private TableColumn<Parcel, Double> weight;
 	@FXML
-	private TableColumn<ParcelClaim, String> dimensions;
+	private TableColumn<Parcel, String> dimensions;
 	
 	ObservableList<ParcelClaim> queue;
 	ObservableList<Parcel> parcels;
@@ -91,7 +91,6 @@ public class AppStartController {
 	}
 	
 	public void onClickStart(ActionEvent e) throws IOException {
-		// if currently login, perform login action
 		System.out.println("Program should start now");
 		
 	}
@@ -113,7 +112,11 @@ public class AppStartController {
 		parcelId.setCellValueFactory(new PropertyValueFactory<>("parcelId"));
 		daysInDepot.setCellValueFactory(new PropertyValueFactory<>("daysInDepot"));
 		weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-//		dimensions.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getLength() + " " + cellData.getValue().getLastName()));
+		dimensions.setCellValueFactory(cellData -> {
+			Parcel item = cellData.getValue();
+		    String mergedValue = (int)item.getLength() + " x " + (int)item.getWidth() + " x " + (int)item.getHeight();
+		    return new ReadOnlyStringWrapper(mergedValue);
+		});
 		allUncollectedParcels.setItems(parcels);
 	}
 	
