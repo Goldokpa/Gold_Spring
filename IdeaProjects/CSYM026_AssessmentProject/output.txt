@@ -1,0 +1,40 @@
+Depot Worker results 
+
+Number of collected parcels: 24
+Number of remaining parcels: 6
+
+Collected Parcels - Collection Fee
+C452 - £15.00
+C242 - £15.00
+X357 - £13.50
+C101 - £10.00
+C105 - £10.00
+C142 - £20.00
+C200 - £15.00
+C591 - £15.00
+C456 - £15.00
+C502 - £15.00
+C131 - £15.00
+C121 - £15.00
+X502 - £18.00
+C542 - £15.00
+C100 - £15.00
+X203 - £13.50
+C118 - £15.00
+C403 - £15.00
+C120 - £20.00
+C110 - £20.00
+X352 - £18.00
+C115 - £20.00
+X161 - £13.50
+X521 - £18.00
+
+Uncollected Parcels
+C554
+C256
+C316
+C117
+C122
+C111
+
+Total Collection Fee for the day: £374.50
