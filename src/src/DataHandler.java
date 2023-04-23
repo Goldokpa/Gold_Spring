@@ -16,14 +16,21 @@ public class DataHandler {
 	private Scanner customersFile;
 	private Scanner parcelsFile;
 	private int lineCount = 0;
+	private String fileName;
 
 	public DataHandler(String parcelsFilePath, String customersFilePath) throws FileNotFoundException {
 		File file = new File(parcelsFilePath);
 		parcelsFile = new Scanner(file);
 
+		fileName = customersFilePath;
 		// one line
 		customersFile = new Scanner(new File(customersFilePath));
 
+	}
+	// needed mid program to process new claims
+	public DataHandler(String customersFilePath) throws FileNotFoundException {
+		fileName = customersFilePath;
+		customersFile = new Scanner(new File(customersFilePath));
 	}
 
 	public Scanner getParcelsFilePath() {
@@ -32,6 +39,10 @@ public class DataHandler {
 
 	public Scanner getCustomersFilePath() {
 		return customersFile;
+	}
+	
+	public String getLineInFile() {
+		return lineInFile;
 	}
 
 	/**
@@ -57,14 +68,14 @@ public class DataHandler {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void importAllParcels(ParcelList pList) throws IOException, Exception {
+	public void importAllParcels() throws IOException, Exception {
 		// skip header
 		parcelsFile.nextLine();
 
 		while (readNextLine(parcelsFile)) {
-			Parcel pc = createParcel(lineInFile, pList);
+			Parcel pc = createParcel(lineInFile);
 			if (pc != null) {
-				pList.addParcel(pc);
+				ParcelList.addParcel(pc);
 			}
 		}
 //		parcelsFile.close();
@@ -77,11 +88,11 @@ public class DataHandler {
 	 * @param lineInFile comma_separated fields in the current line
 	 * @throws Exception
 	 */
-	public Parcel createParcel(String lineInFile, ParcelList pList) throws Exception {
+	public Parcel createParcel(String lineInFile) throws Exception {
 		String[] fields = lineInFile.split(",");
 
 		boolean parcelExists = false;
-		for (Parcel parcel : pList.getUncollectedParcels()) {
+		for (Parcel parcel : ParcelList.getUncollectedParcels()) {
 			if (parcel.getParcelId().equals(fields[0].trim())) {
 				parcelExists = true;
 				System.out.println("parcel exists");
@@ -94,17 +105,15 @@ public class DataHandler {
 		return null;
 	}
 
-	public void createCollectionQueueForWorker(String customersFilePath, DepotWorker worker)
-			throws IOException, Exception {
-		File file = new File(customersFilePath);
-		customersFile = new Scanner(file);
+	public void createCollectionQueue(CollectionQueue cq) throws IOException, Exception {
+		customersFile = new Scanner(new File(fileName));
 
 		// skip header
 		customersFile.nextLine();
 
 		while (readNextLine(customersFile)) {
 			ParcelClaim pc = createParcelClaim(lineInFile);
-			worker.addParcelClaimToQueue(pc);
+			cq.addParcelClaimToQueue(pc);
 		}
 		customersFile.close();
 	}
@@ -142,16 +151,15 @@ public class DataHandler {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void importAllCustomers(CustomerList cList) throws IOException, Exception {
+	public void importAllCustomers() throws IOException, Exception {
 		// skip header
 		customersFile.nextLine();
 
 		while (readNextLine(customersFile)) {
-			Customer c = createCustomer(lineInFile, cList);
+			Customer c = createCustomer(lineInFile);
 			if (c != null) {
-				cList.addCustomer(c);
+				CustomerList.addCustomer(c);
 			}
-
 		}
 		customersFile.close();
 	}
@@ -163,12 +171,12 @@ public class DataHandler {
 	 * @param lineInFile comma_separated fields in the current line
 	 * @throws Exception
 	 */
-	public Customer createCustomer(String lineInFile, CustomerList cList) throws Exception {
+	public Customer createCustomer(String lineInFile) throws Exception {
 		String[] fields = lineInFile.split(",");
 
 		// don't create duplicate customers
 		boolean customerExists = false;
-		for (Customer cust : cList.getCustomers()) {
+		for (Customer cust : CustomerList.getCustomers()) {
 			if (cust.getName().equals(fields[1].trim())) {
 				customerExists = true;
 				break;
