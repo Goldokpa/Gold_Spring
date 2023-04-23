@@ -2,23 +2,23 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Singleton class? - Only need one instance since all workers will be working with the same parcel inventory
 public class CustomerList {
-    private List<Customer> customersList;
+    private static List<Customer> customersList;
     
     public CustomerList() {
         customersList = new ArrayList<Customer>();
     }
     
-    public void addCustomer(Customer customer) {
+    public static void addCustomer(Customer customer) {
     	customersList.add(customer);
     }
     
-    public void removeCustomer(Customer customer) {
+    public static void removeCustomer(Customer customer) {
     	customersList.remove(customer);
     }
 
-	public List<Customer> getCustomers() {
+	public static List<Customer> getCustomers() {
 		return customersList;
 	}
 

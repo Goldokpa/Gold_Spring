@@ -3,9 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
+//Singleton class? - Only need one instance since all workers will be working with the same parcel inventory
 public class ParcelList {
-    List<Parcel> uncollectedParcels; // List of uncollected parcels
-    List<Parcel> collectedParcels; // List of collected parcels
+    private static List<Parcel> uncollectedParcels; // List of uncollected parcels
+    private static List<Parcel> collectedParcels; // List of collected parcels
 
     // Constructor to create a new empty list of parcels
     public ParcelList() {
@@ -14,25 +15,25 @@ public class ParcelList {
     }
 
     // Method to add a new parcel to the list of uncollected parcels
-    public void addParcel(Parcel parcel) {
+    public static void addParcel(Parcel parcel) {
         uncollectedParcels.add(parcel);
     }
 
     // Method to get the list of uncollected parcels
-    public List<Parcel> getUncollectedParcels() {
+    public static List<Parcel> getUncollectedParcels() {
         return uncollectedParcels;
     }
     
     // Method to get the list of collected parcels
-    public List<Parcel> getCollectedParcels() {
+    public static List<Parcel> getCollectedParcels() {
         return collectedParcels;
     }
     
-    public void addParcelToCollectedList(Parcel parcel) {
+    public static void addParcelToCollectedList(Parcel parcel) {
         collectedParcels.add(parcel);
     }
     
-    public void removeParcelFromUnCollectedList(Parcel parcel) {
+    public static void removeParcelFromUnCollectedList(Parcel parcel) {
         uncollectedParcels.remove(parcel);
     }
 
