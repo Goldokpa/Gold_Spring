@@ -2,23 +2,34 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-//Singleton class? - Only need one instance since all workers will be working with the same parcel inventory
+//Singleton class - Only need one instance since all workers will be working with the same parcel inventory
 public class CustomerList {
     private static List<Customer> customersList;
     
-    public CustomerList() {
+    private static CustomerList instance = null; //the singleton instance for the class
+
+    // Constructor to create a new empty list of customers, private so it cannot be accessed outside
+    private CustomerList() {
         customersList = new ArrayList<Customer>();
     }
     
-    public static void addCustomer(Customer customer) {
+    // ensures only one instance of CustomerList gets created throughout the program
+    public static CustomerList getInstance() {
+       if (instance == null) {
+          instance = new CustomerList();
+       }
+       return instance;
+    }
+ 
+    public void addCustomer(Customer customer) {
     	customersList.add(customer);
     }
     
-    public static void removeCustomer(Customer customer) {
+    public void removeCustomer(Customer customer) {
     	customersList.remove(customer);
     }
 
-	public static List<Customer> getCustomers() {
+	public List<Customer> getCustomers() {
 		return customersList;
 	}
 
