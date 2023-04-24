@@ -38,7 +38,9 @@ public class CollectionQueue implements Runnable {
 	public void run() {
 		try {
 			// add new claims after all initial claims has been processed, TBD later
-			Thread.sleep(15000);
+			
+			// Thread.sleep(15000); //use this to test when running without GUI
+			
 			System.out.println("Now adding new claims");
 			DataHandler dh = new DataHandler("./sample_c.csv");
 

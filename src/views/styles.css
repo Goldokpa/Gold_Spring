@@ -17,7 +17,7 @@
 }
 
 
-#startBtn, #addNewParcelsBtn {
+#startBtn, #addNewParcelsBtn, #addToQueueBtn {
 	-fx-background-color: #3fa944;
 	-fx-text-fill: white;
 	-fx-border-color: #3fa944;

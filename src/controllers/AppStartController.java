@@ -57,7 +57,7 @@ public class AppStartController {
 	
 	private CollectionQueue cQueue;
 	private DepotWorker worker1;
-	private ParcelList pList;	
+	private ParcelList pList;
 
 	public void initialize() {
 		try {
@@ -104,9 +104,6 @@ public class AppStartController {
 		//create thread for worker to start attending to the queue
 		new Thread(worker1).start();
 		
-		//create thread for customers joining the queue after worker has started attending to the queue
-		new Thread(cQueue).start();	
-		
 	}
 	
 	public void stopProgramListener(ActionEvent e) throws IOException {
@@ -115,6 +112,10 @@ public class AppStartController {
 		// need to figure out how to stop the threads
 		
 		endProcessing();
+	}
+	public void addNewClaimsToQueueListener(ActionEvent e) throws IOException {
+		//create thread for customers to join the queue after worker has started attending to the queue
+		new Thread(cQueue).start();	
 	}
 	
 	public void showCollectionQueue() {

@@ -17,7 +17,7 @@ public class DataHandler {
 	private Scanner parcelsFile;
 	private int lineCount = 0;
 	private String fileName;
-	
+
 	private ParcelList pList;
 	private CustomerList cList;
 
@@ -28,18 +28,19 @@ public class DataHandler {
 		fileName = customersFilePath;
 		// one line
 		customersFile = new Scanner(new File(customersFilePath));
-		
-		//gets the parcels & customers list
+
+		// gets the parcels & customers list
 		pList = ParcelList.getInstance();
 		cList = CustomerList.getInstance();
 
 	}
+
 	// needed mid program to process new claims
 	public DataHandler(String customersFilePath) throws FileNotFoundException {
 		fileName = customersFilePath;
 		customersFile = new Scanner(new File(customersFilePath));
-		
-		//gets the parcels & customers list
+
+		// gets the parcels & customers list
 		pList = ParcelList.getInstance();
 		cList = CustomerList.getInstance();
 	}
@@ -51,7 +52,7 @@ public class DataHandler {
 	public Scanner getCustomersFilePath() {
 		return customersFile;
 	}
-	
+
 	public String getLineInFile() {
 		return lineInFile;
 	}
@@ -82,7 +83,7 @@ public class DataHandler {
 	public void importAllParcels() throws IOException, Exception {
 		// skip header
 		parcelsFile.nextLine();
-		
+
 		while (readNextLine(parcelsFile)) {
 			Parcel pc = createParcel(lineInFile);
 			if (pc != null) {
@@ -124,7 +125,9 @@ public class DataHandler {
 
 		while (readNextLine(customersFile)) {
 			ParcelClaim pc = createParcelClaim(lineInFile);
-			cq.addParcelClaimToQueue(pc);
+			if (pc != null) {
+				cq.addParcelClaimToQueue(pc);
+			}
 		}
 		customersFile.close();
 	}
@@ -135,11 +138,9 @@ public class DataHandler {
 			String[] fields = lineInFile.split(",");
 
 			if (fields.length > 3) {
-
 				String[] allParcelIds = Arrays.copyOfRange(fields, 2, fields.length);
 
-				// format rows with multiple parcel ids that will have the leading/trailing
-				// quotes
+				// format rows with multiple parcelIds that will have leading/trailing quotes
 				allParcelIds[0] = allParcelIds[0].replace("\"", "");
 				allParcelIds[allParcelIds.length - 1] = allParcelIds[allParcelIds.length - 1].replace("\"", "");
 				pc = new ParcelClaim(fields[1], allParcelIds);
@@ -148,7 +149,6 @@ public class DataHandler {
 				pc = new ParcelClaim(fields[1], parcelId);
 			}
 			return pc;
-
 		} catch (Exception e) {
 			System.out.println("an error occurred");
 		}
