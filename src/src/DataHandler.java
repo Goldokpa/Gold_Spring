@@ -17,6 +17,9 @@ public class DataHandler {
 	private Scanner parcelsFile;
 	private int lineCount = 0;
 	private String fileName;
+	
+	private ParcelList pList;
+	private CustomerList cList;
 
 	public DataHandler(String parcelsFilePath, String customersFilePath) throws FileNotFoundException {
 		File file = new File(parcelsFilePath);
@@ -25,12 +28,20 @@ public class DataHandler {
 		fileName = customersFilePath;
 		// one line
 		customersFile = new Scanner(new File(customersFilePath));
+		
+		//gets the parcels & customers list
+		pList = ParcelList.getInstance();
+		cList = CustomerList.getInstance();
 
 	}
 	// needed mid program to process new claims
 	public DataHandler(String customersFilePath) throws FileNotFoundException {
 		fileName = customersFilePath;
 		customersFile = new Scanner(new File(customersFilePath));
+		
+		//gets the parcels & customers list
+		pList = ParcelList.getInstance();
+		cList = CustomerList.getInstance();
 	}
 
 	public Scanner getParcelsFilePath() {
@@ -71,11 +82,11 @@ public class DataHandler {
 	public void importAllParcels() throws IOException, Exception {
 		// skip header
 		parcelsFile.nextLine();
-
+		
 		while (readNextLine(parcelsFile)) {
 			Parcel pc = createParcel(lineInFile);
 			if (pc != null) {
-				ParcelList.addParcel(pc);
+				pList.addParcel(pc);
 			}
 		}
 //		parcelsFile.close();
@@ -92,7 +103,7 @@ public class DataHandler {
 		String[] fields = lineInFile.split(",");
 
 		boolean parcelExists = false;
-		for (Parcel parcel : ParcelList.getUncollectedParcels()) {
+		for (Parcel parcel : pList.getUncollectedParcels()) {
 			if (parcel.getParcelId().equals(fields[0].trim())) {
 				parcelExists = true;
 				System.out.println("parcel exists");
@@ -158,7 +169,7 @@ public class DataHandler {
 		while (readNextLine(customersFile)) {
 			Customer c = createCustomer(lineInFile);
 			if (c != null) {
-				CustomerList.addCustomer(c);
+				cList.addCustomer(c);
 			}
 		}
 		customersFile.close();
@@ -176,7 +187,7 @@ public class DataHandler {
 
 		// don't create duplicate customers
 		boolean customerExists = false;
-		for (Customer cust : CustomerList.getCustomers()) {
+		for (Customer cust : cList.getCustomers()) {
 			if (cust.getName().equals(fields[1].trim())) {
 				customerExists = true;
 				break;

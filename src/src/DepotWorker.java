@@ -3,18 +3,23 @@ package src;
 // Worker thread for worker to process their collection queue
 public class DepotWorker implements Runnable {
 	private CollectionQueue customerQueue; // list of parcel claims
+	private ParcelList pList;
 
-	public DepotWorker(CollectionQueue queue) { //each depot worker instance gets their own queue
+	public DepotWorker(CollectionQueue queue) { // each depot worker instance gets their own queue
 		customerQueue = queue;
+
+		// gets the parcels list
+		pList = ParcelList.getInstance();
 	}
 
 	@Override
 	public void run() {
 		// the working-through-queue process that's to be threaded
-		
+
 		System.out.println("Current ThreadId: " + Thread.currentThread().getId());
 
-		// continuously works through the list of parcel claims/collections if there are any claims
+		// continuously works through the list of parcel claims/collections if there are
+		// any claims
 		while (true) {
 			if (!customerQueue.isQueueEmpty()) {
 				ParcelClaim claim = this.getCustomerQueue().getCurrentParcelClaimToProcess();
@@ -43,7 +48,7 @@ public class DepotWorker implements Runnable {
 	public synchronized Parcel findParcel(String parcelId) {
 		Parcel found = null;
 
-		for (Parcel p : ParcelList.getUncollectedParcels()) {
+		for (Parcel p : pList.getUncollectedParcels()) {
 			if (p.getParcelId().equals(parcelId)) {
 				found = p;
 				break;
@@ -103,8 +108,8 @@ public class DepotWorker implements Runnable {
 	 */
 	public void processCollection(Parcel p, double fee) {
 		p.setCollectionFee(fee);
-		ParcelList.addParcelToCollectedList(p);
-		ParcelList.removeParcelFromUnCollectedList(p);
+		pList.addParcelToCollectedList(p);
+		pList.removeParcelFromUnCollectedList(p);
 		p.setCollected(true);
 	}
 

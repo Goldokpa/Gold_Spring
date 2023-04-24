@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,22 +57,24 @@ public class AppStartController {
 	
 	private CollectionQueue cQueue;
 	private DepotWorker worker1;
-	
+	private ParcelList pList;	
 
 	public void initialize() {
 		try {
 			
 			DataHandler dh = new DataHandler("./parcels.csv", "./customers.csv");
 
-			new CustomerList();
-			new ParcelList();
+			//create and get instances of these Singleton classes
+			CustomerList.getInstance();
+			pList = ParcelList.getInstance();
+			
 			cQueue = new CollectionQueue();
 			
 			//create customers and parcels and add them to their lists
 			dh.importAllCustomers();
 			
 			dh.importAllParcels();
-			parcelsView = FXCollections.observableArrayList(ParcelList.getUncollectedParcels());
+			parcelsView = FXCollections.observableArrayList(pList.getUncollectedParcels());
 			
 			//create customer claims/collection queue
 			dh.createCollectionQueue(cQueue);
@@ -146,27 +147,27 @@ public class AppStartController {
 			// print results
 			System.out.println("\n\nDone...");
 
-			System.out.println("Number of collected parcels: " + ParcelList.getCollectedParcels().size());
-			System.out.println("Number of remaining parcels: " + ParcelList.getUncollectedParcels().size());
+			System.out.println("Number of collected parcels: " + pList.getCollectedParcels().size());
+			System.out.println("Number of remaining parcels: " + pList.getUncollectedParcels().size());
 
 			// store results in txt file
 			PrintWriter writer = new PrintWriter("output.txt"); // correct dir. path
 			writer.print("Depot Worker results \n\n");
-			writer.append("Number of collected parcels: " + ParcelList.getCollectedParcels().size() + "\n"); // appends to
+			writer.append("Number of collected parcels: " + pList.getCollectedParcels().size() + "\n"); // appends to
 																										// the file
-			writer.append("Number of remaining parcels: " + ParcelList.getUncollectedParcels().size() + "\n");
+			writer.append("Number of remaining parcels: " + pList.getUncollectedParcels().size() + "\n");
 
 			DecimalFormat dpFormatter = new DecimalFormat("0.00");
 
 			double totalFees = 0;
 			writer.append("\nCollected Parcels - Collection Fee\n");
-			for (Parcel p : ParcelList.getCollectedParcels()) {
+			for (Parcel p : pList.getCollectedParcels()) {
 				writer.append(p.getParcelId() + " - £" + dpFormatter.format(p.getCollectionFee()) + "\n");
 				totalFees += p.getCollectionFee();
 			}
 			writer.append("\nUncollected Parcels\n");
 
-			for (Parcel p : ParcelList.getUncollectedParcels()) {
+			for (Parcel p : pList.getUncollectedParcels()) {
 				writer.append(p.getParcelId() + "\n");
 			}
 

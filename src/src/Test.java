@@ -10,9 +10,9 @@ public class Test {
 		try {
 			DataHandler dh = new DataHandler("./parcels.csv", "./customers.csv");
 
-			//now singleton? classes
-			new CustomerList();
-			new ParcelList();
+			//create instances of these Singleton classes
+			CustomerList.getInstance();
+			ParcelList.getInstance();
 			
 			CollectionQueue queue = new CollectionQueue();
 			

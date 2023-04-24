@@ -6,6 +6,6 @@ module CSYM026_AssessmentProject {
 	requires javafx.base;
 
 	opens src to javafx.graphics, javafx.fxml, javafx.base;
-	opens models to javafx.graphics, javafx.fxml;
+	opens views to javafx.graphics, javafx.fxml;
 	opens controllers to javafx.graphics, javafx.fxml;
 }

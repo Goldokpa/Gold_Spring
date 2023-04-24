@@ -43,11 +43,14 @@ public class CollectionQueue implements Runnable {
 			DataHandler dh = new DataHandler("./sample_c.csv");
 
 			Scanner customerFile = dh.getCustomersFilePath();
+			
+			//get the customer list
+			CustomerList cList = CustomerList.getInstance();
 
 			while (dh.readNextLine(customerFile)) {
 				Customer c = dh.createCustomer(dh.getLineInFile());
 				if (c != null) {
-					CustomerList.addCustomer(c);
+					cList.addCustomer(c);
 				}
 
 				ParcelClaim pc = dh.createParcelClaim(dh.getLineInFile());
