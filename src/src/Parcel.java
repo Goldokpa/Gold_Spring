@@ -63,7 +63,7 @@ public class Parcel {
 		parcelId = id;
 	}
 
-	public int getNumberOfDaysInDepot() {
+	public int getDaysInDepot() {
 		return daysInDepot;
 	}
 

@@ -1,37 +1,51 @@
 package src;
 
-import java.util.List;
-import java.util.ArrayList;
+// Worker thread for worker to process their collection queue
+public class DepotWorker implements Runnable {
+	private CollectionQueue customerQueue; // list of parcel claims
+	private ParcelList pList;
 
-public class DepotWorker {
-	private List<ParcelClaim> collectionQueue;
-	private static ParcelList pList;
+	public DepotWorker(CollectionQueue queue) { // each depot worker instance gets their own queue
+		customerQueue = queue;
 
-	public DepotWorker(ParcelList pList) {
-		collectionQueue = new ArrayList<ParcelClaim>();
+		// gets the parcels list
+		pList = ParcelList.getInstance();
+	}
 
-		DepotWorker.pList = pList;
+	@Override
+	public void run() {
+		// the working-through-queue process that's to be threaded
+
+		System.out.println("Current ThreadId: " + Thread.currentThread().getId());
+
+		// continuously works through the list of parcel claims/collections if there are
+		// any claims
+		while (true) {
+			if (!customerQueue.isQueueEmpty()) {
+				ParcelClaim claim = this.getCustomerQueue().getCurrentParcelClaimToProcess();
+				this.attendToCustomer(claim);
+				try {
+					Thread.sleep(2000); // wait 2 seconds before moving on to next claim
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 	}
 
-	public List<ParcelClaim> getCollectionQueue() {
-		return collectionQueue;
-	}
-
-	public void addParcelClaimToQueue(ParcelClaim p) {
-		collectionQueue.add(p);
-	}
-
-	public void removeParcelClaimFromQueue(ParcelClaim p) {
-		collectionQueue.remove(p);
+	public CollectionQueue getCustomerQueue() {
+		return customerQueue;
 	}
 
 	/**
-	 * this method goes through the uncollected parcels list to confirm the parcel exists
+	 * this method goes through the uncollected parcels list to confirm the parcel
+	 * exists
+	 * 
 	 * @param parcelId
 	 * @return parcel matching the provided parcelId
-	 */	
-    public Parcel findParcel(String parcelId) {
+	 */
+	public synchronized Parcel findParcel(String parcelId) {
 		Parcel found = null;
 
 		for (Parcel p : pList.getUncollectedParcels()) {
@@ -45,12 +59,12 @@ public class DepotWorker {
 
 	/**
 	 * This method showcases how to calculate collection fee per parcel. Rules given
-	 * are:
-	 *  - all parcels that have been in the depot for more than 7 days have a higher base fee (£20 vs. £15 for less than 7 days),
-	 *  - the fee is further calculated based on weight range e.g. parcels weighing less than 5kg have a
-	 * base fee of £13 while parcels greater than 15kg is still £20,
-	 * - finally, parcels with ID starting with "X" are labeled as untracked parcels, hence have a 10% discount on collection fee
-	 * wile parcels with "C" are tracked
+	 * are: - all parcels that have been in the depot for more than 7 days have a
+	 * higher base fee (£20 vs. £15 for less than 7 days), - the fee is further
+	 * calculated based on weight range e.g. parcels weighing less than 5kg have a
+	 * base fee of £13 while parcels greater than 15kg is still £20, - finally,
+	 * parcels with ID starting with "X" are labeled as untracked parcels, hence
+	 * have a 10% discount on collection fee wile parcels with "C" are tracked
 	 * 
 	 * @param p parcel object
 	 * @return collection fee for the parcel
@@ -59,7 +73,7 @@ public class DepotWorker {
 	public double calculateFee(Parcel p) {
 		double fee = 0;
 
-		if (p.getNumberOfDaysInDepot() >= 7) {
+		if (p.getDaysInDepot() >= 7) {
 			if (p.getWeight() > 15) {
 				fee = 20;
 			} else if (p.getWeight() > 5 && p.getWeight() <= 15) {
@@ -125,7 +139,11 @@ public class DepotWorker {
 				processCollection(foundParcel, collectionFee);
 
 				System.out.println("Parcel Id " + p.getParcelIds()[i] + " claimed!");
-			} catch (NullPointerException e) {
+
+				// wait 1 second before processing next parcel for the same customer
+				Thread.sleep(1000);
+
+			} catch (NullPointerException | InterruptedException e) {
 				System.out.println("Parcel " + p.getParcelIds()[i] + " not found");
 			}
 		}
