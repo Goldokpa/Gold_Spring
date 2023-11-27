@@ -1,0 +1,87 @@
+/* Set global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header styles */
+header {
+  background-color: #061f3fee;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #0a090923;
+  padding: 10px;
+}
+
+/* Course icon styles */
+.course-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Add colors */
+header a {
+  color: #353fc2;
+  text-decoration: none;
+}
+
+/* Adds a hover to the cursor */
+a:hover {
+  text-decoration: underline;
+}
+
+table tr:nth-child(even) {
+  background-color: #194e19;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+/* Media queries */
+@media only screen and (max-width: 600px) {
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+
+  th,
+  td {
+    font-size: 14px;
+    padding: 6px;
+  }
+}

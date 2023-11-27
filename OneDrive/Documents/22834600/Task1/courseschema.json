@@ -1,0 +1,83 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/schemas/course-catalog.json",
+    "type": "object",
+    "required": [
+        "courses"
+    ],
+    "properties": {
+        "courses": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "courseTitle",
+                    "level",
+                    "courseDetails",
+                    "entryRequirements",
+                    "feesAndFunding"
+                ],
+                "properties": {
+                    "courseTitle": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "string",
+                        "enum": [
+                            "Undergraduate",
+                            "Postgraduate"
+                        ]
+                    },
+                    "courseDetails": {
+                        "type": "object",
+                        "required": [
+                            "duration",
+                            "modeOfStudy",
+                            "award",
+                            "ucasCode"
+                        ],
+                        "properties": {
+                            "duration": {
+                                "type": "string"
+                            },
+                            "modeOfStudy": {
+                                "type": "string"
+                            },
+                            "award": {
+                                "type": "string"
+                            },
+                            "ucasCode": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "entryRequirements": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "feesAndFunding": {
+                        "type": "object",
+                        "required": [
+                            "ukPound",
+                            "euro",
+                            "usDollar"
+                        ],
+                        "properties": {
+                            "ukPound": {
+                                "type": "number"
+                            },
+                            "euro": {
+                                "type": "number"
+                            },
+                            "usDollar": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

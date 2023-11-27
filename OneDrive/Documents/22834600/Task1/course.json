@@ -1,0 +1,197 @@
+{
+  "courses": [
+    {
+      "courseIcon": "icons8-accounting-80.png",
+      "courseTitle": "BA (Hons) Accounting and Finance",
+      "level": "Undergraduate",
+      "courseDetails": {
+        "duration": "3 years full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Bachelor of Arts (BA)",
+        "ucasCode": "N420"
+      },
+      "entryRequirements": [
+        "A Level: BBC",
+        "BTEC: DDM"
+      ],
+      "feesAndFunding": {
+        "ukPound": 9250,
+        "euro": 10862.5,
+        "usDollar": 12387.5
+      }
+    },
+    {
+      "courseIcon": "icons8-accounting-80.png",
+      "courseTitle": "Web Development and Cyber Security BSc (Hons)",
+      "level": "Undergraduate",
+      "courseDetails": {
+        "duration": "3 years full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Bachelor of Science (BSc)",
+        "ucasCode": "G451"
+      },
+      "entryRequirements": [
+        "A Level: BCC",
+        "BTEC: DMM"
+      ],
+      "feesAndFunding": {
+        "ukPound": 9250,
+        "euro": 10862.5,
+        "usDollar": 12387.5
+      }
+    },
+    {
+      "courseIcon": "icons8-english-64.png",
+      "courseTitle": "English BA (Hons)",
+      "level": "Undergraduate",
+      "courseDetails": {
+        "duration": "3 years full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Bachelor of Arts (BA)",
+        "ucasCode": "Q300"
+      },
+      "entryRequirements": [
+        "A Level: BCC",
+        "BTEC: DMM"
+      ],
+      "feesAndFunding": {
+        "ukPound": 9250,
+        "euro": 10862.5,
+        "usDollar": 12387.5
+      }
+    },
+    {
+      "courseTitle": "BSc (Hons) Environmental Science",
+      "level": "Undergraduate",
+      "courseDetails": {
+        "duration": "3 years full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Bachelor of Science (BSc)",
+        "ucasCode": "F750"
+      },
+      "entryRequirements": [
+        "A Level: BCC",
+        "BTEC: DMM"
+      ],
+      "feesAndFunding": {
+        "ukPound": 9250,
+        "euro": 10862.5,
+        "usDollar": 12387.5
+      }
+    },
+    {
+      "courseTitle": "BSc (Hons) Psychology",
+      "level": "Undergraduate",
+      "courseDetails": {
+        "duration": "3 years full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Bachelor of Science (BSc)",
+        "ucasCode": "C800"
+      },
+      "entryRequirements": [
+        "A Level: BBC",
+        "BTEC: DDM"
+      ],
+      "feesAndFunding": {
+        "ukPound": 9250,
+        "euro": 10862.5,
+        "usDollar": 12387.5
+      }
+    },
+        {
+      "courseTitle": "MSc Business and Management",
+      "level": "Postgraduate",
+      "courseDetails": {
+        "duration": "1 year full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Master of Science (MSc)",
+        "ucasCode": "N1P9"
+      },
+      "entryRequirements": [
+        "A good degree or equivalent professional qualification",
+        "IELTS 6.5 or equivalent"
+      ],
+      "feesAndFunding": {
+        "ukPound": 8010,
+        "euro": 9040.89,
+        "usDollar": 9989.27
+      }
+    },
+    {
+      "courseTitle": "MA Human Resource Management",
+      "level": "Postgraduate",
+      "courseDetails": {
+        "duration": "1 year full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Master of Arts (MA)",
+        "ucasCode": "N6C6"
+      },
+      "entryRequirements": [
+        "A good degree or equivalent professional qualification",
+        "IELTS 6.5 or equivalent"
+      ],
+       "feesAndFunding": {
+        "ukPound": 8010,
+        "euro": 9040.89,
+        "usDollar": 9989.27
+      }
+    },
+    {
+      "courseTitle": "MSc International Marketing",
+      "level": "Postgraduate",
+      "courseDetails": {
+        "duration": "1 year full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Master of Science (MSc)",
+        "ucasCode": "N5M2"
+      },
+      "entryRequirements": [
+        "A good degree or equivalent professional qualification",
+        "IELTS 6.5 or equivalent"
+      ],
+      "feesAndFunding": {
+        "ukPound": 8010,
+        "euro": 9040.89,
+        "usDollar": 9989.27
+      }
+    },
+    {
+      "courseTitle": "MSc Cyber Security",
+      "level": "Postgraduate",
+      "courseDetails": {
+        "duration": "1 year full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Master of Science (MSc)",
+        "ucasCode": "N1K2"
+      },
+      "entryRequirements": [
+        "A good degree or equivalent professional qualification",
+        "IELTS 6.5 or equivalent"
+      ],
+       "feesAndFunding": {
+        "ukPound": 8010,
+        "euro": 9040.89,
+        "usDollar": 9989.27
+      }
+    },
+    {
+      "courseTitle": "MA Graphic Design",
+      "level": "Postgraduate",
+      "courseDetails": {
+        "duration": "1 year full-time",
+        "modeOfStudy": "On-campus",
+        "award": "Master of Arts (MA)",
+        "ucasCode": "W213"
+      },
+      "entryRequirements": [
+        "A good degree or equivalent professional qualification",
+        "IELTS 6.5 or equivalent"
+      ],
+       "feesAndFunding": {
+        "ukPound": 8010,
+        "euro": 9040.89,
+        "usDollar": 9989.27
+      }
+    }
+  ]
+}
