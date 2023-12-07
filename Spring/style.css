@@ -1,69 +1,248 @@
-/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Condensed&family=Roboto+Mono:wght@200&family=Roboto:wght@300&display=swap');
 
 body {
     text-align: center;
     margin: 0;
-    /* Remove default margin to cover the entire viewport */
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
+
+li,
+a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
 }
 
 header {
     background-color: #144d7b;
     color: #fff;
-    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2%;
 }
 
-nav {
-    margin-top: 20px;
+.nav_links {
+    list-style: none;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    display: inline;
+.nav_links li {
+    display: inline-block;
     margin-right: 20px;
 }
 
-a {
+.nav_links li a {
     text-decoration: none;
     color: #fff;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
 }
 
-main {
-    background-image: url('C:/Users/warep/Spring/_616fdac6-5fa9-490c-90ec-e99a04b087b9.jpg');
-    background-size: cover;
-    /* Cover the entire container */
-    background-position: center;
-    /* Center the image */
+.nav_links li a:hover {
+    color: #0d3456;
+}
+
+.description,
+.outdoors,
+.hydration {
+    background-position: center center;
     background-repeat: no-repeat;
-    /* Do not repeat the image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: #fff;
-    /* Text color on top of the background image */
+}
+
+.description {
+    background-image: url('background.jpg');
+    background-size: cover;
+    height: 500px;
+}
+
+.outdoors {
+    background-image: url('outdoor.png');
+    background-size: cover;
+    height: 500px;
+}
+
+.hydration {
+    background-image: url('hydration-background.jpg');
+    background-size: cover;
+    height: 500px;
+}
+
+.main {
     padding: 50px;
-    /* Adjust padding as needed */
 }
 
-h2 {
-    font-size: 32px;
+.description h2,
+.outdoors h4,
+.hydration h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
 }
 
-h3,
-h4,
-h5 {
-    font-size: 24px;
+.description p,
+.outdoors p,
+.hydration p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
-p {
+.discover,
+.sustain,
+.hydration-tips {
+    text-align: left;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+}
+
+.discover h2,
+.sustain h2,
+.hydration h2 {
+    font-size: 40px;
+    color: #144d7b;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.discover p,
+.sustain p,
+.hydration-tips p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.discover .button,
+.sustain .button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #144d7b;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 40px;
+    border-radius: 20px;
+}
+
+.discover .button:hover,
+.sustain .button:hover {
+    background-color: #0d3456;
+}
+
+/* Styles */
+
+header {
+    background-color: #144d7b;
+    color: white;
+    padding: 1em;
+}
+
+.products {
+    padding: 3em;
+    text-align: center;
+}
+
+.products h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.product-item {
+    width: 30%;
+    margin: 1%;
+    padding: 2em;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.product-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product-item h3 {
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+.product-item p {
+    font-size: .9em;
     line-height: 1.5;
-    margin-bottom: 0;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.options select {
+    margin-right: 1em;
+    padding: 0.5em;
+}
+
+.options button {
+    padding: 0.5em 1em;
+    background-color: #144d7b;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.options button:hover {
+    background-color: #0d3456;
 }
 
 footer {
     background-color: #144d7b;
-    color: #fff;
+    color: white;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-section {
+    text-align: center;
+}
+
+.contact-section p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-icons {
+    display: flex;
+    align-items: left;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.copyright {
+    text-align: right;
 }
